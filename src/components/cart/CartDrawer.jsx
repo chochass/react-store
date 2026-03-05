@@ -33,37 +33,37 @@ const CartDrawer = (props) => {
             <>
               <ul className="flex-1 divide-y divide-gray-100 overflow-y-auto px-6">
                 {cart.map(({ product, quantity }) => (
-                    <li key={product.id} className="flex gap-4 py-4">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="h-16 w-16 shrink-0 rounded bg-gray-100 object-cover"
-                      />
+                  <li key={product.id} className="flex gap-4 py-4">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="h-16 w-16 shrink-0 rounded bg-gray-100 object-cover"
+                    />
 
-                      <div className="flex flex-1 flex-col">
-                        <p className="text-sm font-medium text-gray-900">
-                          {product.name}
-                        </p>
-                        <ProductPrice product={product} size="sm" />
+                    <div className="flex flex-1 flex-col">
+                      <p className="text-sm font-semibold text-gray-900">
+                        {product.name}
+                      </p>
+                      <ProductPrice product={product} size="sm" />
 
-                        <div className="mt-auto flex items-center justify-between">
-                          <QuantitySelector
-                            value={quantity}
-                            onChange={(q) => updateQuantity(product.id, q)}
-                            size="sm"
-                          />
+                      <div className="mt-auto flex items-center justify-between">
+                        <QuantitySelector
+                          value={quantity}
+                          onChange={(q) => updateQuantity(product.id, q)}
+                          size="sm"
+                        />
 
-                          <button
-                            onClick={() => removeFromCart(product.id)}
-                            className="cursor-pointer text-gray-400 hover:text-red-500"
-                            aria-label={`Remove ${product.name}`}
-                          >
-                            <HiOutlineTrash className="h-4 w-4" />
-                          </button>
-                        </div>
+                        <button
+                          onClick={() => removeFromCart(product.id)}
+                          className="cursor-pointer text-gray-400 hover:text-red-500"
+                          aria-label={`Remove ${product.name}`}
+                        >
+                          <HiOutlineTrash className="h-4 w-4" />
+                        </button>
                       </div>
-                    </li>
-                  ))}
+                    </div>
+                  </li>
+                ))}
               </ul>
 
               <div className="border-t border-gray-200 px-6 py-4">
@@ -72,7 +72,7 @@ const CartDrawer = (props) => {
                     Total
                   </span>
                   <span className="text-lg font-bold text-gray-900">
-                    {cartTotal}€
+                    {cartTotal.toFixed(2)}€
                   </span>
                 </div>
                 <button

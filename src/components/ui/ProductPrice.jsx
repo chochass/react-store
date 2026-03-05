@@ -8,7 +8,7 @@ const ProductPrice = (props) => {
   if (product.discountedPrice) {
     return (
       <div className={`flex items-baseline ${sizeStyles[size].gap}`}>
-        <span className={`${sizeStyles[size].price} font-bold text-red-600`}>
+        <span className={`${sizeStyles[size].price} text-red-600`}>
           {product.discountedPrice}€
         </span>
         <span
@@ -22,7 +22,7 @@ const ProductPrice = (props) => {
 
   return (
     <div className={`flex items-baseline ${sizeStyles[size].gap}`}>
-      <span className={`${sizeStyles[size].price} font-bold text-gray-900`}>
+      <span className={`${sizeStyles[size].price} text-gray-900`}>
         {product.price}€
       </span>
     </div>
