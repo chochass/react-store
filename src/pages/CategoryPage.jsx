@@ -55,14 +55,7 @@ const CategoryPage = () => {
     setVisibleCount(itemsPerPage);
   };
 
-  return !category ? (
-    <main className="mx-auto w-full max-w-screen-2xl px-4 py-16 text-center">
-      <h1 className="text-2xl font-bold text-gray-900">Category not found</h1>
-      <p className="mt-2 text-gray-500">
-        The category &ldquo;{categorySlug}&rdquo; does not exist.
-      </p>
-    </main>
-  ) : (
+  return category ? (
     <main className="w-full flex-1 py-8">
       <div className="mb-6 px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-gray-900">{category.name}</h1>
@@ -106,18 +99,20 @@ const CategoryPage = () => {
       </div>
 
       {hasMore ? (
-        <ActionButton onClick={() => setVisibleCount((prev) => prev + itemsPerPage)}>
-          Load More
-        </ActionButton>
-      ) : (
         <ActionButton
-          icon
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          aria-label="Back to top"
-        >
-          Back to top
-        </ActionButton>
+          type="loadMore"
+          onLoadMore={() => setVisibleCount((prev) => prev + itemsPerPage)}
+        />
+      ) : (
+        <ActionButton type="backToTop" />
       )}
+    </main>
+  ) : (
+    <main className="mx-auto w-full max-w-screen-2xl px-4 py-16 text-center">
+      <h1 className="text-2xl font-bold text-gray-900">Category not found</h1>
+      <p className="mt-2 text-gray-500">
+        The category &ldquo;{categorySlug}&rdquo; does not exist.
+      </p>
     </main>
   );
 };

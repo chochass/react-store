@@ -27,20 +27,7 @@ const ProductPage = () => {
     }
   };
 
-  return !product ? (
-    <main className="mx-auto w-full max-w-screen-2xl flex-1 px-4 py-16 text-center">
-      <h1 className="text-2xl font-bold text-gray-900">Product not found</h1>
-      <p className="mt-2 text-gray-500">
-        The product you&rsquo;re looking for doesn&rsquo;t exist.
-      </p>
-      <Link
-        to={`/${categorySlug}`}
-        className="mt-4 inline-block text-sm font-medium text-gray-900 underline hover:text-gray-600"
-      >
-        Back to {category?.name}
-      </Link>
-    </main>
-  ) : (
+  return product ? (
     <main className="mx-auto w-full max-w-screen-2xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
       <Link
         to={`/${categorySlug}`}
@@ -99,6 +86,19 @@ const ProductPage = () => {
           />
         </div>
       </div>
+    </main>
+  ) : (
+    <main className="mx-auto w-full max-w-screen-2xl flex-1 px-4 py-16 text-center">
+      <h1 className="text-2xl font-bold text-gray-900">Product not found</h1>
+      <p className="mt-2 text-gray-500">
+        The product you&rsquo;re looking for doesn&rsquo;t exist.
+      </p>
+      <Link
+        to={`/${categorySlug}`}
+        className="mt-4 inline-block text-sm font-medium text-gray-900 underline hover:text-gray-600"
+      >
+        Back to {category?.name}
+      </Link>
     </main>
   );
 };
