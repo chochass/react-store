@@ -1,10 +1,13 @@
+import toast from "react-hot-toast";
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { products, categories } from "../data/catalog";
-import { HiArrowLeft, HiMinus, HiPlus } from "react-icons/hi";
-import toast from "react-hot-toast";
+import { HiArrowLeft } from "react-icons/hi";
 import StarRating from "../components/ui/StarRating";
+import ProductPrice from "../components/ui/ProductPrice";
+import QuantitySelector from "../components/ui/QuantitySelector";
+import AddToCartButton from "../components/ui/AddToCartButton";
 import { useCart } from "../context/cart-context";
+import { products, categories } from "../data/catalog";
 
 const ProductPage = () => {
   const { categorySlug, productId } = useParams();
@@ -33,7 +36,6 @@ const ProductPage = () => {
     );
   }
 
-  const hasDiscount = product.discountedPrice;
   const largeImage = product.image.replace("400/400", "800/800");
 
   const handleAddToCart = () => {
@@ -48,7 +50,7 @@ const ProductPage = () => {
         className="inline-flex items-center gap-1 text-sm text-gray-500 transition-colors hover:text-gray-900"
       >
         <HiArrowLeft className="h-4 w-4" />
-        Back to {category?.name ?? "Shop"}
+        Back to {category?.name}
       </Link>
 
       <div className="mt-6 grid gap-8 md:grid-cols-2">
@@ -71,21 +73,8 @@ const ProductPage = () => {
 
           <p className="mt-4 text-gray-600">{product.description}</p>
 
-          <div className="mt-4 flex items-baseline gap-3">
-            {hasDiscount ? (
-              <>
-                <span className="text-2xl font-bold text-red-600">
-                  {product.discountedPrice}€
-                </span>
-                <span className="text-lg text-gray-400 line-through">
-                  {product.price}€
-                </span>
-              </>
-            ) : (
-              <span className="text-2xl font-bold text-gray-900">
-                {product.price}€
-              </span>
-            )}
+          <div className="mt-4">
+            <ProductPrice product={product} size="lg" />
           </div>
 
           <div className="mt-2 flex items-center gap-2">
@@ -98,33 +87,19 @@ const ProductPage = () => {
             </span>
           </div>
 
-          <div className="mt-8 flex items-center rounded border border-gray-300 self-start">
-            <button
-              onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-              className="cursor-pointer px-3 py-2 text-gray-600 transition-colors hover:bg-gray-100 disabled:opacity-40"
-              disabled={quantity <= 1}
-              aria-label="Decrease quantity"
-            >
-              <HiMinus className="h-4 w-4" />
-            </button>
-            <span className="min-w-10 text-center text-sm font-medium text-gray-900">
-              {quantity}
-            </span>
-            <button
-              onClick={() => setQuantity((q) => q + 1)}
-              className="cursor-pointer px-3 py-2 text-gray-600 transition-colors hover:bg-gray-100"
-              aria-label="Increase quantity"
-            >
-              <HiPlus className="h-4 w-4" />
-            </button>
+          <div className="mt-8 self-start">
+            <QuantitySelector
+              value={quantity}
+              onChange={setQuantity}
+              size="lg"
+            />
           </div>
 
-          <button
+          <AddToCartButton
             onClick={handleAddToCart}
-            className="mt-4 w-full cursor-pointer rounded bg-gray-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-gray-700 sm:w-auto"
-          >
-            Add to Cart
-          </button>
+            size="lg"
+            className="mt-4 w-full sm:w-auto"
+          />
         </div>
       </div>
     </main>

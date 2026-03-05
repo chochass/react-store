@@ -1,5 +1,7 @@
 import toast from "react-hot-toast";
 import StarRating from "../ui/StarRating";
+import ProductPrice from "../ui/ProductPrice";
+import AddToCartButton from "../ui/AddToCartButton";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/cart-context";
 
@@ -38,29 +40,15 @@ const ProductCard = (props) => {
           <StarRating rating={product.rating} />
         </div>
 
-        <div className="mt-2 flex items-baseline gap-2">
-          {product.discountedPrice ? (
-            <>
-              <span className="text-sm font-bold text-red-600">
-                {product.discountedPrice}€
-              </span>
-              <span className="text-xs text-gray-400 line-through">
-                {product.price}€
-              </span>
-            </>
-          ) : (
-            <span className="text-sm font-bold text-gray-900">
-              {product.price}€
-            </span>
-          )}
+        <div className="mt-2">
+          <ProductPrice product={product} size="sm" />
         </div>
 
-        <button
+        <AddToCartButton
           onClick={handleAddToCart}
-          className="mt-auto pt-3 w-full cursor-pointer rounded bg-gray-900 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-gray-700"
-        >
-          Add to Cart
-        </button>
+          size="sm"
+          className="mt-auto pt-3 w-full"
+        />
       </div>
     </article>
   );

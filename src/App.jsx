@@ -1,12 +1,8 @@
-import { Routes, Route, Navigate, useParams } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/layout/Layout";
-import CategoryPage from "./pages/CategoryPage";
-import { categories } from "./data/catalog";
+import CategoryPageWrapper from "./pages/CategoryPageWrapper";
 import ProductPage from "./pages/ProductPage";
-function CategoryPageWrapper() {
-  const { categorySlug } = useParams();
-  return <CategoryPage key={categorySlug} />;
-}
+import { categories } from "./data/catalog";
 
 function App() {
   return (
@@ -18,6 +14,10 @@ function App() {
         />
         <Route path=":categorySlug/:productId" element={<ProductPage />} />
         <Route path=":categorySlug" element={<CategoryPageWrapper />} />
+        <Route
+          path="*"
+          element={<Navigate to={`/${categories[0].slug}`} replace />}
+        />
       </Route>
     </Routes>
   );

@@ -1,5 +1,7 @@
-import { HiOutlineX, HiMinus, HiPlus, HiOutlineTrash } from "react-icons/hi";
+import { HiOutlineX, HiOutlineTrash } from "react-icons/hi";
 import { useCart } from "../../context/cart-context";
+import ProductPrice from "../ui/ProductPrice";
+import QuantitySelector from "../ui/QuantitySelector";
 
 const CartDrawer = (props) => {
   const { open, onClose } = props;
@@ -30,9 +32,7 @@ const CartDrawer = (props) => {
           ) : (
             <>
               <ul className="flex-1 divide-y divide-gray-100 overflow-y-auto px-6">
-                {cart.map(({ product, quantity }) => {
-                  const price = product.discountedPrice ?? product.price;
-                  return (
+                {cart.map(({ product, quantity }) => (
                     <li key={product.id} className="flex gap-4 py-4">
                       <img
                         src={product.image}
@@ -44,34 +44,14 @@ const CartDrawer = (props) => {
                         <p className="text-sm font-medium text-gray-900">
                           {product.name}
                         </p>
-                        <p className="text-sm font-semibold text-gray-700">
-                          {price}€
-                        </p>
+                        <ProductPrice product={product} size="sm" />
 
                         <div className="mt-auto flex items-center justify-between">
-                          <div className="flex items-center rounded border border-gray-300">
-                            <button
-                              onClick={() =>
-                                updateQuantity(product.id, quantity - 1)
-                              }
-                              className="cursor-pointer px-1.5 py-0.5 text-gray-600 hover:bg-gray-100"
-                              aria-label="Decrease quantity"
-                            >
-                              <HiMinus className="h-3 w-3" />
-                            </button>
-                            <span className="min-w-6 text-center text-xs font-medium text-gray-900">
-                              {quantity}
-                            </span>
-                            <button
-                              onClick={() =>
-                                updateQuantity(product.id, quantity + 1)
-                              }
-                              className="cursor-pointer px-1.5 py-0.5 text-gray-600 hover:bg-gray-100"
-                              aria-label="Increase quantity"
-                            >
-                              <HiPlus className="h-3 w-3" />
-                            </button>
-                          </div>
+                          <QuantitySelector
+                            value={quantity}
+                            onChange={(q) => updateQuantity(product.id, q)}
+                            size="sm"
+                          />
 
                           <button
                             onClick={() => removeFromCart(product.id)}
@@ -83,8 +63,7 @@ const CartDrawer = (props) => {
                         </div>
                       </div>
                     </li>
-                  );
-                })}
+                  ))}
               </ul>
 
               <div className="border-t border-gray-200 px-6 py-4">

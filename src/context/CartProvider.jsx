@@ -1,5 +1,5 @@
 import { useReducer, useEffect, useMemo } from "react";
-import CartContext from "./cart-context";
+import { CartContext } from "./cart-context";
 
 const STORAGE_KEY = "ecom-cart";
 
