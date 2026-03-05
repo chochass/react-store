@@ -7,6 +7,7 @@ import ProductGrid from "../components/products/ProductGrid";
 import ProductCounter from "../components/products/ProductCounter";
 import SortDropdown from "../components/ui/SortDropdown";
 import FilterSidebar from "../components/filters/FilterSidebar";
+import ActionButton from "../components/ui/ActionButton";
 
 const CategoryPage = () => {
   const { categorySlug } = useParams();
@@ -104,15 +105,18 @@ const CategoryPage = () => {
         </div>
       </div>
 
-      {hasMore && (
-        <div className="mt-8 text-center">
-          <button
-            onClick={() => setVisibleCount((prev) => prev + itemsPerPage)}
-            className="cursor-pointer rounded border border-gray-300 px-8 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
-          >
-            Load More
-          </button>
-        </div>
+      {hasMore ? (
+        <ActionButton onClick={() => setVisibleCount((prev) => prev + itemsPerPage)}>
+          Load More
+        </ActionButton>
+      ) : (
+        <ActionButton
+          icon
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          aria-label="Back to top"
+        >
+          Back to top
+        </ActionButton>
       )}
     </main>
   );

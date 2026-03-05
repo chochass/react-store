@@ -13,7 +13,7 @@ const Footer = () => {
           &copy; {year} Chavdar Dimov. All rights reserved.
         </p>
 
-        <nav className="flex justify-self-end gap-4 text-xs text-gray-500">
+        <nav className="flex flex-col justify-self-end gap-1 text-xs text-gray-500">
           <a href="#" className="transition-colors hover:text-gray-900">
             Terms
           </a>
