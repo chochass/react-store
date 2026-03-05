@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
-      <div className="relative flex h-18 items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-2xl relative flex h-18 items-center justify-between px-4 sm:px-6 lg:px-8">
         <NavLink
           to={`/${defaultCategorySlug}`}
           className="flex h-full shrink-0 items-center py-1"
