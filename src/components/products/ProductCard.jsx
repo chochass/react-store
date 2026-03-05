@@ -36,7 +36,7 @@ const ProductCard = (props) => {
           {product.description}
         </p>
 
-        <div className="mt-2">
+        <div className="mt-auto pt-2">
           <StarRating rating={product.rating} />
         </div>
 
@@ -47,7 +47,7 @@ const ProductCard = (props) => {
         <AddToCartButton
           onClick={handleAddToCart}
           size="sm"
-          className="mt-auto pt-3 w-full"
+          className="mt-3 w-full"
         />
       </div>
     </article>

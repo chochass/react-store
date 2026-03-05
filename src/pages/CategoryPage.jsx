@@ -66,8 +66,8 @@ const CategoryPage = () => {
   };
 
   return (
-    <main className="mx-auto w-full max-w-screen-2xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mb-6">
+    <main className="w-full flex-1 py-8">
+      <div className="mb-6 px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-gray-900">{category.name}</h1>
         <p className="mt-1 text-gray-600">{category.description}</p>
         <p className="mt-1 text-sm text-gray-400">
@@ -75,7 +75,7 @@ const CategoryPage = () => {
         </p>
       </div>
 
-      <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-4">
           <button
             onClick={() => setMobileFilterOpen(true)}
@@ -92,7 +92,7 @@ const CategoryPage = () => {
         <SortDropdown value={sortBy} onChange={handleSortChange} />
       </div>
 
-      <div className="flex flex-1 gap-8">
+      <div className="flex flex-1 gap-8 px-4 sm:px-6 lg:px-8">
         <FilterSidebar
           availableColors={availableColors}
           filters={filters}
@@ -105,19 +105,19 @@ const CategoryPage = () => {
 
         <div className="flex-1 shrink-0">
           <ProductGrid products={visibleProducts} />
-
-          {hasMore && (
-            <div className="mt-8 text-center">
-              <button
-                onClick={() => setVisibleCount((prev) => prev + itemsPerPage)}
-                className="cursor-pointer rounded border border-gray-300 px-8 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
-              >
-                Load More
-              </button>
-            </div>
-          )}
         </div>
       </div>
+
+      {hasMore && (
+        <div className="mt-8 text-center">
+          <button
+            onClick={() => setVisibleCount((prev) => prev + itemsPerPage)}
+            className="cursor-pointer rounded border border-gray-300 px-8 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+          >
+            Load More
+          </button>
+        </div>
+      )}
     </main>
   );
 };

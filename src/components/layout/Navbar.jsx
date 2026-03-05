@@ -16,11 +16,12 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
-      <div className="mx-auto flex h-18 max-w-screen-2xl items-center px-4 sm:px-6 lg:px-8">
+      <div className="relative flex h-18 items-center justify-between px-4 sm:px-6 lg:px-8">
         <NavLink
           to={`/${defaultCategorySlug}`}
           className="flex h-full shrink-0 items-center py-1"
           aria-label="Home"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           <img
             src="/logo.png"
@@ -29,13 +30,13 @@ const Navbar = () => {
           />
         </NavLink>
 
-        <nav className="hidden flex-1 justify-center gap-8 md:flex">
+        <nav className="pointer-events-none absolute inset-x-0 hidden justify-center gap-8 md:flex">
           {categories.map((cat) => (
             <NavLink
               key={cat.slug}
               to={`/${cat.slug}`}
               className={({ isActive }) =>
-                `text-sm font-medium uppercase tracking-wide transition-colors ${
+                `pointer-events-auto text-sm font-medium uppercase tracking-wide transition-colors ${
                   isActive
                     ? "text-gray-900 border-b-2 border-gray-900 pb-0.5"
                     : "text-gray-500 hover:text-gray-900"
@@ -47,7 +48,7 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <div className="ml-auto flex items-center gap-2">
+        <div className="flex items-center gap-2">
           <button
             type="button"
             className="relative cursor-pointer rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900"

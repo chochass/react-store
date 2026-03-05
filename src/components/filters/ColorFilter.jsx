@@ -20,20 +20,20 @@ const ColorFilter = (props) => {
 
   return (
     <fieldset>
-      <legend className="text-sm font-semibold text-gray-900">Color</legend>
-      <div className="mt-2 space-y-2">
+      <legend className="text-base font-semibold text-gray-900">Color</legend>
+      <div className="mt-3 space-y-3">
         {availableColors.map((color) => (
-          <label key={color} className="flex cursor-pointer items-center gap-2">
+          <label key={color} className="flex cursor-pointer items-center gap-3">
             <input
               type="checkbox"
               checked={selectedColors.includes(color)}
               onChange={() => toggle(color)}
-              className="h-4 w-4 rounded border-gray-300 accent-gray-900"
+              className="h-4.5 w-4.5 rounded border-gray-300 accent-gray-900"
             />
             <span
-              className={`inline-block h-4 w-4 rounded-full ${COLOR_SWATCHES[color] || "bg-gray-300"}`}
+              className={`inline-block h-5 w-5 rounded-full ${COLOR_SWATCHES[color] || "bg-gray-300"}`}
             />
-            <span className="text-sm capitalize text-gray-700">{color}</span>
+            <span className="text-base capitalize text-gray-700">{color}</span>
           </label>
         ))}
       </div>

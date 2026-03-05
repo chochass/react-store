@@ -13,13 +13,13 @@ const FilterSidebar = (props) => {
     onMobileClose,
   } = props;
   const content = (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-bold text-gray-900">Filters</h2>
+        <h2 className="text-xl font-bold text-gray-900">Filters</h2>
         <div className="flex items-center gap-3">
           <button
             onClick={onReset}
-            className="cursor-pointer text-xs text-gray-500 underline hover:text-gray-900"
+            className="cursor-pointer text-sm text-gray-500 underline hover:text-gray-900"
           >
             Reset all
           </button>
@@ -50,7 +50,9 @@ const FilterSidebar = (props) => {
 
   return (
     <>
-      <aside className="hidden w-56 shrink-0 md:block">{content}</aside>
+      <aside className="sticky top-[72px] hidden w-72 shrink-0 self-start md:block">
+        {content}
+      </aside>
 
       {mobileOpen && (
         <div className="fixed inset-0 z-50 flex md:hidden">
