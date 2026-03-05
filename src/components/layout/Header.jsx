@@ -5,7 +5,7 @@ const Header = () => {
     <>
       <div className="w-full">
         <img
-          src="https://picsum.photos/seed/store-hero/1600/400"
+          src="https://picsum.photos/seed/store-hero1/1600/300"
           alt="New Collection — Up to 20% off"
           className="h-auto w-full object-cover"
         />

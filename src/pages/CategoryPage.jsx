@@ -97,7 +97,7 @@ const CategoryPage = () => {
           onMobileClose={() => setMobileFilterOpen(false)}
         />
 
-        <div className="flex-1">
+        <div className="flex-1 shrink-0">
           <ProductGrid products={visibleProducts} />
 
           {hasMore && (

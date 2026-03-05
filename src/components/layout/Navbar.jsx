@@ -1,10 +1,18 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
+import {
+  HiOutlineMenu,
+  HiOutlineX,
+  HiOutlineShoppingBag,
+} from "react-icons/hi";
 import { categories } from "../../data/catalog";
+import { useCart } from "../../context/cart-context";
+import CartDrawer from "../cart/CartDrawer";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+  const { cartCount } = useCart();
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -34,19 +42,35 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <button
-          type="button"
-          className="ml-auto inline-flex items-center justify-center rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 md:hidden"
-          onClick={() => setMobileMenuOpen((prev) => !prev)}
-          aria-expanded={mobileMenuOpen}
-          aria-label="Toggle navigation menu"
-        >
-          {mobileMenuOpen ? (
-            <HiOutlineX className="h-6 w-6" />
-          ) : (
-            <HiOutlineMenu className="h-6 w-6" />
-          )}
-        </button>
+        <div className="ml-auto flex items-center gap-2">
+          <button
+            type="button"
+            className="relative cursor-pointer rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900"
+            onClick={() => setCartOpen(true)}
+            aria-label="Open cart"
+          >
+            <HiOutlineShoppingBag className="h-6 w-6" />
+            {cartCount > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-gray-900 text-[10px] font-bold text-white">
+                {cartCount > 99 ? "99+" : cartCount}
+              </span>
+            )}
+          </button>
+
+          <button
+            type="button"
+            className="inline-flex items-center justify-center rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 md:hidden"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-expanded={mobileMenuOpen}
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? (
+              <HiOutlineX className="h-6 w-6" />
+            ) : (
+              <HiOutlineMenu className="h-6 w-6" />
+            )}
+          </button>
+        </div>
       </div>
 
       {mobileMenuOpen && (
@@ -66,6 +90,7 @@ const Navbar = () => {
           ))}
         </nav>
       )}
+      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
     </header>
   );
 };
