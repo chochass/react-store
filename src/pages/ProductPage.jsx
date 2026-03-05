@@ -21,7 +21,7 @@ const ProductPage = () => {
 
   if (!product) {
     return (
-      <main className="mx-auto max-w-screen-2xl flex-1 px-4 py-16 text-center">
+      <main className="mx-auto w-full max-w-screen-2xl flex-1 px-4 py-16 text-center">
         <h1 className="text-2xl font-bold text-gray-900">Product not found</h1>
         <p className="mt-2 text-gray-500">
           The product you&rsquo;re looking for doesn&rsquo;t exist.
@@ -44,7 +44,7 @@ const ProductPage = () => {
   };
 
   return (
-    <main className="mx-auto max-w-screen-2xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
+    <main className="mx-auto w-full max-w-screen-2xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
       <Link
         to={`/${categorySlug}`}
         className="inline-flex items-center gap-1 text-sm text-gray-500 transition-colors hover:text-gray-900"

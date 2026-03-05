@@ -5,7 +5,7 @@ import {
   HiOutlineX,
   HiOutlineShoppingBag,
 } from "react-icons/hi";
-import { categories } from "../../data/catalog";
+import { categories, defaultCategorySlug } from "../../data/catalog";
 import { useCart } from "../../context/cart-context";
 import CartDrawer from "../cart/CartDrawer";
 
@@ -16,12 +16,17 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
-      <div className="mx-auto flex max-w-screen-2xl items-center px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-18 max-w-screen-2xl items-center px-4 sm:px-6 lg:px-8">
         <NavLink
-          to="/"
-          className="text-2xl font-bold tracking-tight text-gray-900"
+          to={`/${defaultCategorySlug}`}
+          className="flex h-full shrink-0 items-center py-1"
+          aria-label="Home"
         >
-          ECOM
+          <img
+            src="/logo.png"
+            alt="Bags and Shoes"
+            className="h-full w-auto object-contain"
+          />
         </NavLink>
 
         <nav className="hidden flex-1 justify-center gap-8 md:flex">

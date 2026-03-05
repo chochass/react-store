@@ -1,8 +1,7 @@
 import { useMemo } from "react";
 import { products } from "../data/catalog";
 
-const getEffectivePrice = (product) =>
-  product.discountedPrice ?? product.price;
+const getEffectivePrice = (product) => product.discountedPrice ?? product.price;
 
 export default function useProducts(categorySlug, filters, sortBy) {
   return useMemo(() => {
@@ -19,10 +18,13 @@ export default function useProducts(categorySlug, filters, sortBy) {
       result = result.filter((p) => filters.colors.includes(p.color));
     }
 
-    if (filters.minPrice > priceRange.min || filters.maxPrice < priceRange.max) {
+    const minBound = filters.minPrice ?? priceRange.min;
+    const maxBound = filters.maxPrice ?? priceRange.max;
+
+    if (minBound > priceRange.min || maxBound < priceRange.max) {
       result = result.filter((p) => {
         const effective = getEffectivePrice(p);
-        return effective >= filters.minPrice && effective <= filters.maxPrice;
+        return effective >= minBound && effective <= maxBound;
       });
     }
 
@@ -41,6 +43,11 @@ export default function useProducts(categorySlug, filters, sortBy) {
         break;
     }
 
-    return { filteredProducts: result, totalInCategory, availableColors, priceRange };
+    return {
+      filteredProducts: result,
+      totalInCategory,
+      availableColors,
+      priceRange,
+    };
   }, [categorySlug, filters, sortBy]);
 }

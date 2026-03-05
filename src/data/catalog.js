@@ -13,6 +13,8 @@ export const categories = [
   },
 ];
 
+export const defaultCategorySlug = categories[0].slug;
+
 export const products = [
   {
     id: 1,

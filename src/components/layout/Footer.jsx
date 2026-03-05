@@ -2,11 +2,13 @@ const Footer = () => {
   const year = new Date().getFullYear();
   return (
     <footer className="mt-auto border-t border-gray-200 bg-white">
-      <div className="mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-2xl px-4 py-6 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-          <p className="text-sm font-semibold tracking-tight text-gray-900">
-            ECOM
-          </p>
+          <img
+            src="/logo.png"
+            alt="Bags and Shoes"
+            className="ml-5 h-8 w-auto object-contain"
+          />
 
           <nav className="flex gap-6 text-sm text-gray-500">
             <a href="#" className="hover:text-gray-900 transition-colors">

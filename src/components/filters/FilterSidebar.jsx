@@ -2,16 +2,16 @@ import { HiOutlineX } from "react-icons/hi";
 import ColorFilter from "./ColorFilter";
 import PriceFilter from "./PriceFilter";
 
-const FilterSidebar = ({
-  availableColors,
-  priceRange,
-  filters,
-  onColorChange,
-  onPriceChange,
-  onReset,
-  mobileOpen,
-  onMobileClose,
-}) => {
+const FilterSidebar = (props) => {
+  const {
+    availableColors,
+    filters,
+    onColorChange,
+    onPriceChange,
+    onReset,
+    mobileOpen,
+    onMobileClose,
+  } = props;
   const content = (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -40,7 +40,7 @@ const FilterSidebar = ({
       />
 
       <PriceFilter
-        priceRange={priceRange}
+        key={`${filters.minPrice}-${filters.maxPrice}`}
         currentMin={filters.minPrice}
         currentMax={filters.maxPrice}
         onChange={onPriceChange}
@@ -50,16 +50,11 @@ const FilterSidebar = ({
 
   return (
     <>
-      <aside className="hidden w-56 shrink-0 md:block">
-        {content}
-      </aside>
+      <aside className="hidden w-56 shrink-0 md:block">{content}</aside>
 
       {mobileOpen && (
         <div className="fixed inset-0 z-50 flex md:hidden">
-          <div
-            className="fixed inset-0 bg-black/40"
-            onClick={onMobileClose}
-          />
+          <div className="fixed inset-0 bg-black/40" onClick={onMobileClose} />
           <aside className="relative ml-auto h-full w-72 overflow-y-auto bg-white p-6 shadow-xl">
             {content}
           </aside>
